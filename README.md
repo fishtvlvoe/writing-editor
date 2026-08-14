@@ -1,30 +1,21 @@
 ▋ writing-editor（給別人用）
 
-• 這是乾淨的「責任編輯」流程。沒有某個作者的語氣、讀者、進行中稿。
-
-• 你拿到的是流程，不是別人的人。
+• 乾淨的責任編輯流程。沒有特定作者的契約與進行中稿。
 
 
 ▋ 怎麼用
 
-• 1. 用 Cursor 打開這個資料夾
+• 1. Cursor 打開這個資料夾
 
-• 2. 複製 `constitution.template.md` → `constitution.md`，填你自己的
+• 2. 複製 `constitution.template.md` → `constitution.md`，填自己的
 
 • 3. 說「責任編輯」或 `/writing-editor`
 
-• 4. 有畫面就講；它給骨架，你再講，再收成你會說的話
 
+▋ 跟 fishbook 的關係
 
-▋ 會做／不會做
+• 作者 Fish 自己的資料與專用 Agent 在 `fishbook` repo
 
-• 會：對焦、組骨架、查核、一題一題問、存大綱
+• 更新責任編輯流程／Skills 時：這個乾淨版與 `fishbook/writing-editor/` 要一起改
 
-• 不會：沒授權就代寫全文、假裝認識你
-
-
-▋ 要加功能
-
-• 共用能力放 `skills/`，見 `skills/README.md`
-
-• 細節見 `docs/iterate.md`
+• 個人資料永不進這個 repo

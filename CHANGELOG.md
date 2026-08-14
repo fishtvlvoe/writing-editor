@@ -1,13 +1,20 @@
+▋ 0.3.1 — 2026-08-14
+
+• 架構定成兩個 repo：本乾淨版 + fishbook（個人）
+
+• 廢除 writing-editor-me
+
+
 ▋ 0.3.0 — 2026-08-14
 
-• 拆成兩個用途：本 repo 只留乾淨給別人用的流程；個人契約與進行中稿改到 `writing-editor-me`
+• 本 repo 只留乾淨給別人用的流程
 
 
 ▋ 0.2.0 — 2026-08-14
 
-• 補 skills 模組槽、VERSION、CHANGELOG、迭代與使用說明
+• skills 模組槽、VERSION、CHANGELOG
 
 
 ▋ 0.1.0 — 2026-08-14
 
-• 初版通用責編流程與契約模板
+• 初版
