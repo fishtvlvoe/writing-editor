@@ -1,6 +1,9 @@
 ▋ 已掛載模組
 
-• 目前沒有額外模組。日常只跑根目錄 `SKILL.md`。
+• 名稱：po-li-gan-guan
+• 路徑：`skills/po-li-gan-guan/SKILL.md`
+• 何時載入：組短文骨架時／作者說「拆一版」、寫臉書文時
+• 必填 constitution 欄位：無
 
 
 ▋ 登記格式（新增時照抄一筆）
