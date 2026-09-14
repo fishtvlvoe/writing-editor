@@ -17,6 +17,15 @@ description: >-
 3. **感**：藏在場景的身體記憶（95分不敢抬頭、被支配的恐懼、等下班裝死）。
 4. **觀**：一篇只賣一句。所有的測試都是理解的過程。不討好巨人，重新去玩。
 
+## Facebook 讀者結果
+
+這個模組的文章目標，是讓 Facebook 讀者停留約 10～20 秒，從原本的 A 移到新的 B。
+
+- 讀者可以跳著看；每小段可以獨立成立。空白與跳躍是呼吸，不要自動修順。
+- 評估停留、分享、收藏與觀念轉變，不以論文式完整作為第一標準。
+- 只在意思跑掉、事實錯誤或明顯誤植時修正；作者故意的不完全接順要保留。
+- AI 負責查證、整理、提供結構；作者負責看見、觀點、情緒與最後口氣。
+
 ## 人格與口氣底座（來自 clawd）
 
 - 參考文件：
@@ -34,3 +43,4 @@ description: >-
 
 - [阮經天／同理心](~/.agents/skills/awesome-eason/companions/po-li-gan-guan/references/sample-ruan.md)
 - [名校學霸／無垢巨人](~/.agents/skills/awesome-eason/companions/po-li-gan-guan/references/sample-giant.md)
+- [AI 取代工作與人的價值／作者今日版](references/sample-ai-work-value.md)
