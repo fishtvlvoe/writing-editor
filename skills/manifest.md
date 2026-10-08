@@ -1,8 +1,9 @@
-▋ 已掛載模組
+▋ 已掛載核心架構
 
 • 名稱：po-li-gan-guan
 • 路徑：`skills/po-li-gan-guan/SKILL.md`
-• 何時載入：組短文骨架時／作者說「拆一版」、寫臉書文時
+• 定位：通用中文文章架構，不是作者文體
+• 何時載入：每次使用 writing-editor 寫文章時預設載入
 • 必填 constitution 欄位：無
 
 

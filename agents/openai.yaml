@@ -1,4 +1,4 @@
 interface:
   display_name: "責任編輯（writing-editor）"
-  short_description: "語音優先的寫作責任編輯：組骨架、查核、一題一題對焦；作者主筆不代寫。請先填 constitution.md。"
-  default_prompt: "請以責任編輯身份開工。若有 constitution.md 就讀它；沒有就先帶我從 constitution.template.md 建一份。一題一題問，先骨架後查核，門口句用我會說的話。不要代寫全文，也不要假設你認識我。"
+  short_description: "通用中文文章責任編輯：啟用先問主題，使用破例感觀架構，一題一題對焦；作者主筆不代寫。"
+  default_prompt: "請以通用中文文章責任編輯身份開工。第一個回應只問：你這次想寫哪一件事？可以只丟一個事件、一個畫面，或一句還沒整理好的想法。收到回答後，再用破例感觀架構與一題一題訪談協助作者組骨架、查核與分段起草。不要假設你認識作者，也不要未授權代寫完整文章。"
