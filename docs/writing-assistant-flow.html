@@ -1,0 +1,1903 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>寫作助手｜從訪談到定稿的完整流程</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root {
+  --wrap-max: 1760px;
+  --ivory:#FAF9F5; --paper:#FFFFFF; --slate:#141413;
+  --clay:#D97757; --clay-d:#B85C3E; --oat:#E3DACC; --olive:#788C5D;
+  --g100:#F0EEE6; --g200:#E6E3DA; --g300:#D1CFC5; --g500:#87867F; --g700:#3D3D3A;
+  --serif:ui-serif, Georgia, "Times New Roman", Times, serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"PingFang TC","Noto Sans TC",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Monaco,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--slate);font:calc(16px * var(--fs, 1))/1.6 var(--sans);font-synthesis:none;-webkit-font-smoothing:antialiased}
+.wrap{width:min(94vw,var(--wrap-max,1760px));margin:auto;padding:0 calc(32px * var(--dens, 1)) calc(100px * var(--dens, 1))}
+header{padding:calc(72px * var(--dens, 1)) 0 calc(38px * var(--dens, 1));border-bottom:1px solid var(--g300)}
+.eyebrow{font:calc(12px * var(--fs, 1)) var(--mono);letter-spacing:.1em;color:var(--g500);margin-bottom:calc(18px * var(--dens, 1))}
+.vt-session-badge{display:flex;align-items:center;gap:calc(9px * var(--dens, 1));flex-wrap:wrap;margin:calc(-72px * var(--dens, 1)) 0 calc(24px * var(--dens, 1));padding:calc(6px * var(--dens, 1)) calc(12px * var(--dens, 1));background:var(--vt-session-color,#666);color:#fff;font:calc(11px * var(--fs, 1))/1.4 var(--mono);letter-spacing:.02em}
+.vt-session-badge .dot{width:7px;height:7px;border-radius:50%;background:#fff;opacity:.85;flex-shrink:0}
+.vt-session-badge .lb{font-weight:700}
+.vt-session-badge .id{margin-left:auto;padding-left:calc(10px * var(--dens, 1));opacity:.8}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.012em;text-wrap:balance}
+h1{font-size:calc(clamp(36px,5vw,58px) * var(--fs, 1));line-height:1.08;max-width:18ch;margin:0}
+h1 em,h2 em,h3 em{font-style:normal;font-weight:700;color:var(--clay)}
+header .intro{max-width:68ch;color:var(--g700);font-size:calc(18px * var(--fs, 1));margin:calc(20px * var(--dens, 1)) 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:calc(8px * var(--dens, 1));margin-top:calc(22px * var(--dens, 1))}
+.pill{border:1px solid var(--g300);border-radius:999px;padding:calc(5px * var(--dens, 1)) calc(11px * var(--dens, 1));font-size:calc(12px * var(--fs, 1));color:var(--g700);background:var(--paper)}
+section{padding:calc(44px * var(--dens, 1)) 0;border-bottom:1px solid var(--g300)}
+.section-head{display:flex;align-items:baseline;gap:calc(14px * var(--dens, 1));margin-bottom:calc(18px * var(--dens, 1))}
+.section-no{color:var(--clay-d);font:calc(12px * var(--fs, 1)) var(--mono)}
+h2{font-size:calc(clamp(24px,3vw,34px) * var(--fs, 1));margin:0}
+.lead{max-width:72ch;color:var(--g700);margin:calc(8px * var(--dens, 1)) 0 calc(22px * var(--dens, 1))}
+.figure{width:100%;max-width:100%;min-width:0;overflow-x:auto;background:var(--ivory);border:1px solid var(--g300);border-radius:10px}
+.figure svg{display:block;width:100%;height:auto}
+.figure svg.xplore{min-width:1000px}
+svg text{font-family:var(--sans);font-size:calc(13px * var(--fs, 1));fill:var(--g700)}
+svg text.n{font-size:calc(16px * var(--fs, 1));font-weight:650;fill:var(--slate)}
+svg text.sub{font-size:calc(13px * var(--fs, 1));fill:var(--g700)}
+svg text.label{font-size:calc(13px * var(--fs, 1));font-weight:600;fill:var(--clay-d)}
+svg .edge .ln{fill:none;stroke:var(--g500);stroke-width:2;marker-end:url(#wa-arrow)}
+svg .edge .hit{fill:none;stroke:transparent;stroke-width:18}
+svg .node .box{fill:var(--paper);stroke:var(--g500);stroke-width:1.5}
+svg .node[data-kind="user"] .box{fill:var(--g100);stroke:var(--g500)}
+svg .node[data-kind="decision"] .box{fill:#fff;stroke:var(--slate);stroke-width:1.6}
+svg .node[data-id="interview"] .box,svg .node[data-id="deliver"] .box{fill:#FBE9DF;stroke:var(--clay);stroke-width:2}
+svg .node{cursor:pointer}
+svg .node:focus .box,svg .node:hover .box{stroke:var(--clay-d);stroke-width:3}
+.flow-note{display:flex;gap:calc(12px * var(--dens, 1));align-items:flex-start;border-left:3px solid var(--clay);padding:calc(12px * var(--dens, 1)) calc(16px * var(--dens, 1));margin:calc(18px * var(--dens, 1)) 0 0;background:var(--paper);max-width:72ch}
+.flow-note p{margin:0;color:var(--g700)}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:calc(14px * var(--dens, 1))}
+.card{background:var(--paper);border:1px solid var(--g300);border-radius:8px;padding:calc(20px * var(--dens, 1));min-width:0}
+.card .tag{font:calc(11px * var(--fs, 1)) var(--mono);color:var(--clay-d);margin-bottom:calc(8px * var(--dens, 1))}
+.card h3{font:600 calc(20px * var(--fs, 1))/1.35 var(--sans);margin:0 0 calc(10px * var(--dens, 1))}
+.card p{color:var(--g700);margin:0 0 calc(10px * var(--dens, 1))}
+.card p:last-child{margin-bottom:0}
+.card ul{padding-left:1.2em;margin:calc(8px * var(--dens, 1)) 0 0;color:var(--g700)}
+.card li+li{margin-top:calc(5px * var(--dens, 1))}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:calc(14px * var(--dens, 1))}
+.role{padding:calc(22px * var(--dens, 1));background:var(--g100);border:1px solid var(--g300);border-radius:8px}
+.role h3{margin:0 0 calc(8px * var(--dens, 1));font:600 calc(18px * var(--fs, 1)) var(--sans)}
+.role p{margin:0;color:var(--g700)}
+.gate{background:#FBE9DF;border:1px solid #E8C4AF;padding:calc(18px * var(--dens, 1)) calc(20px * var(--dens, 1));border-radius:8px;margin-top:calc(18px * var(--dens, 1))}
+.gate strong{color:var(--clay-d)}
+.ruleline{display:flex;flex-wrap:wrap;gap:calc(8px * var(--dens, 1));margin-top:calc(12px * var(--dens, 1))}
+.ruleline span{background:var(--paper);border:1px solid var(--g300);padding:calc(6px * var(--dens, 1)) calc(10px * var(--dens, 1));border-radius:999px;font-size:calc(13px * var(--fs, 1))}
+footer{padding:calc(30px * var(--dens, 1)) 0 calc(50px * var(--dens, 1));color:var(--g500);font-size:calc(13px * var(--fs, 1))}
+@media(max-width:720px){
+ .wrap{width:100%;padding:0 calc(18px * var(--dens, 1)) calc(70px * var(--dens, 1))}
+ header{padding:calc(46px * var(--dens, 1)) 0 calc(28px * var(--dens, 1))}
+ .cards,.role-grid{grid-template-columns:1fr}
+ section{padding:calc(32px * var(--dens, 1)) 0}
+ .section-head{align-items:flex-start}
+}
+</style>
+<style>
+/* 結構圖探索層＋浮動說明窗 — 與 diagram-explore.js 成對，整段內嵌進頁面 <style>（不外連）。
+   依賴頁面既有 token：--sans --mono --g300 --g700 --slate；缺的用後備值。
+   掛載條件與標記規則見 references/structure-diagrams.md §6.7。
+   說明與追線結果都在浮動窗裡，圖吃滿寬。 */
+.xp {
+  --xp-hot: var(--clay-d);
+}
+.xp .figure {
+  min-width: 0;
+}
+.xp .xp-main {
+  min-width: 0;
+}
+/* 章節設定資料的 script 也掛 .xp-views，下面的 display:flex 會把它撐成可見文字；只給 div */
+.xp script.xp-views {
+  display: none !important;
+}
+.xp div.xp-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(6px * var(--dens, 1));
+  margin: 0 0 calc(8px * var(--dens, 1));
+}
+.xp .xp-views button {
+  font: calc(12.5px * var(--fs, 1)) var(--sans, sans-serif);
+  padding: calc(5px * var(--dens, 1)) calc(10px * var(--dens, 1));
+  border: 1px solid var(--g300, #d1cfc5);
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--g700, #3d3d3a);
+}
+.xp .xp-views button.active {
+  background: var(--slate, #141413);
+  color: #fff;
+  border-color: var(--slate, #141413);
+}
+.xp .xp-note {
+  background: #fff;
+  border-left: 3px solid var(--xp-hot);
+  padding: calc(8px * var(--dens, 1)) calc(12px * var(--dens, 1));
+  border-radius: 0 6px 6px 0;
+  margin: 0 0 calc(8px * var(--dens, 1));
+  font-size: calc(13.5px * var(--fs, 1));
+}
+.xp .xp-note:empty {
+  display: none;
+}
+.xp .xp-hint {
+  font-size: calc(12.5px * var(--fs, 1));
+  color: var(--g500, #87867f);
+  margin: 0 0 calc(8px * var(--dens, 1));
+}
+
+/* ── 浮動說明窗（全頁一個，掛在 body 下）── */
+.xp-panel {
+  --xp-hot: var(--clay-d);
+  box-sizing: border-box; /* 不依賴頁面有沒有全域 border-box：手機寬 100% 加內距會凸出畫面 */
+  position: fixed;
+  right: 18px;
+  top: 76px;
+  max-height: calc(100vh - 100px); /* 高度跟著內容走：內容少時不要撐滿、多蓋住圖 */
+  width: min(30em, 92vw);
+  overflow: auto;
+  background: #fff;
+  border: 1.5px solid var(--g300, #d1cfc5);
+  border-radius: 12px;
+  box-shadow: 0 14px 44px rgba(20, 20, 19, 0.18);
+  padding: calc(16px * var(--dens, 1)) calc(22px * var(--dens, 1)) calc(20px * var(--dens, 1));
+  z-index: 9000;
+  font: calc(14px * var(--fs, 1))/1.7 var(--sans, system-ui, sans-serif);
+  color: var(--slate, #141413);
+  text-align: left;
+}
+.xp-panel[hidden] {
+  display: none;
+}
+.xp-panel.dragging {
+  box-shadow: 0 20px 60px rgba(20, 20, 19, 0.28);
+}
+/* 只管窗自己的圖示；作者放進說明裡的圖照原尺寸（之前套到窗內所有 svg，會把 200×80 的圖壓成 14×14） */
+.xp-grip svg,
+.xp-ibtn svg {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.xp-grip {
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  font-size: calc(11.5px * var(--fs, 1));
+  color: var(--g500, #87867f);
+  padding: calc(2px * var(--dens, 1)) calc(80px * var(--dens, 1)) calc(8px * var(--dens, 1)) 0;
+  margin-bottom: calc(8px * var(--dens, 1));
+  border-bottom: 1px dashed var(--g300, #d1cfc5);
+  display: flex;
+  align-items: center;
+  gap: calc(6px * var(--dens, 1));
+}
+.xp-panel.dragging .xp-grip {
+  cursor: grabbing;
+}
+.xp-ibtn {
+  position: absolute;
+  top: 9px;
+  border: 1px solid var(--g300, #d1cfc5);
+  background: #fff;
+  border-radius: 6px;
+  padding: calc(3px * var(--dens, 1)) calc(6px * var(--dens, 1));
+  cursor: pointer;
+  color: var(--g700, #3d3d3a);
+  display: flex;
+  align-items: center;
+}
+.xp-ibtn:hover {
+  border-color: var(--xp-hot);
+}
+.xp-flip {
+  right: 44px;
+}
+.xp-close {
+  right: 12px;
+}
+.xp-tag {
+  display: inline-block;
+  font-size: calc(11px * var(--fs, 1));
+  border-radius: 3px;
+  padding: calc(1px * var(--dens, 1)) calc(8px * var(--dens, 1));
+  background: var(--slate, #141413);
+  color: #fff;
+}
+.xp-tag[hidden] {
+  display: none;
+}
+.xp-panel h3.xp-title {
+  font-family: var(--serif, Georgia, serif);
+  font-weight: 500;
+  font-size: calc(20px * var(--fs, 1));
+  line-height: 1.35;
+  margin: calc(6px * var(--dens, 1)) 0 calc(4px * var(--dens, 1));
+}
+.xp-body h4 {
+  font-family: var(--mono, monospace);
+  font-size: calc(11.5px * var(--fs, 1));
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--g500, #87867f);
+  margin: calc(14px * var(--dens, 1)) 0 calc(4px * var(--dens, 1));
+}
+.xp-body p {
+  margin: 0 0 calc(6px * var(--dens, 1));
+}
+.xp-panel ul,
+.xp-panel ol {
+  margin: calc(4px * var(--dens, 1)) 0;
+  padding-left: calc(20px * var(--dens, 1));
+}
+.xp-panel ul {
+  list-style: disc;
+}
+.xp-panel ol {
+  list-style: decimal;
+}
+.xp-panel li {
+  margin: calc(3px * var(--dens, 1)) 0;
+}
+.xp-dim {
+  color: var(--g500, #87867f);
+}
+.xp-nav {
+  margin-top: calc(16px * var(--dens, 1));
+  padding-top: calc(12px * var(--dens, 1));
+  border-top: 1.5px solid var(--g200, #e6e3da);
+  font-size: calc(12.5px * var(--fs, 1));
+  color: var(--g700, #3d3d3a);
+}
+.xp-nav[hidden] {
+  display: none;
+}
+.xp-row {
+  margin: calc(2px * var(--dens, 1)) 0;
+}
+.xp-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(6px * var(--dens, 1));
+  margin-top: calc(8px * var(--dens, 1));
+}
+.xp-btns button {
+  font: calc(12.5px * var(--fs, 1)) var(--sans, sans-serif);
+  padding: calc(4px * var(--dens, 1)) calc(10px * var(--dens, 1));
+  border: 1px solid var(--g300, #d1cfc5);
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--g700, #3d3d3a);
+}
+.xp-btns button:hover {
+  border-color: var(--xp-hot);
+}
+.xp-btns button.active {
+  background: var(--xp-hot);
+  border-color: var(--xp-hot);
+  color: #fff;
+}
+.xp-panel kbd,
+.xp kbd {
+  font: calc(11px * var(--fs, 1)) var(--mono, monospace);
+  border: 1px solid var(--g300, #d1cfc5);
+  border-bottom-width: 2px;
+  padding: 0 calc(5px * var(--dens, 1));
+  border-radius: 4px;
+  background: #fff;
+}
+
+svg.xplore {
+  user-select: none;
+  -webkit-user-select: none;
+}
+svg.xplore .node {
+  cursor: pointer;
+  outline: none;
+}
+svg.xplore .node:hover .box,
+svg.xplore .node:focus-visible .box {
+  stroke: var(--xp-hot, var(--clay-d));
+  stroke-width: 1.8;
+}
+svg.xplore .edge .hit {
+  cursor: pointer;
+}
+svg.xplore .node,
+svg.xplore .edge,
+svg.xplore .elabel {
+  transition: opacity 0.18s;
+}
+svg.xplore.has-focus .node:not(.on),
+svg.xplore.has-focus .elabel:not(.on) {
+  opacity: 0.22;
+}
+svg.xplore.has-focus .edge:not(.on) {
+  opacity: 0.15;
+}
+svg.xplore .node.on.is-focus .box {
+  stroke: var(--xp-hot, var(--clay-d));
+  stroke-width: 2.2;
+  filter: none;
+}
+svg.xplore .edge.on .ln {
+  stroke: var(--xp-hot, var(--clay-d));
+  stroke-width: 2.2;
+}
+svg.xplore .node.off {
+  opacity: 0.18;
+}
+svg.xplore .lg {
+  cursor: pointer;
+}
+svg.xplore .lg.off {
+  opacity: 0.35;
+}
+svg.xplore .ordbg {
+  fill: var(--xp-hot, var(--clay-d));
+}
+svg.xplore .ord {
+  font-size: calc(10px * var(--fs, 1));
+  font-weight: 700;
+  fill: #fff;
+}
+@media (max-width: 760px) {
+  .xp-panel {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    max-height: 64vh;
+    border-radius: 14px 14px 0 0;
+    z-index: 10000;
+  }
+  .xp-grip,
+  .xp-flip {
+    display: none;
+  }
+}
+</style>
+<style id="vt-profile" data-profile-hash="020a3e00b0">:root { --fs: 1.45; --wrap-max: 1080px; }</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">寫作助手 · 使用流程</div>
+  <h1>從一個念頭，走到一篇<em>你認可的文章</em></h1>
+  <p class="intro">這套流程給任何需要寫文章的人使用：先用一題一問的訪談把想法問清楚，再查證、搭骨架、寫初稿，最後由作者決定是否定稿。AI 負責協助整理，不替作者決定立場。</p>
+  <div class="meta"><span class="pill">對象：需要用文字溝通的人</span><span class="pill">流程：訪談 → 查證 → 大綱 → 初稿 → 定稿</span><span class="pill">核心：作者保留判斷與最後決定權</span></div>
+</header>
+
+<section id="map">
+  <div class="section-head"><span class="section-no">01</span><h2>整張流程圖</h2></div>
+  <p class="lead">點任一格看它的工作內容；遇到方向未清、事實不明或稿子不合意，流程會退回前一步，不會硬把稿子當成定稿。</p>
+  <div class="xp" data-explore>
+  <script type="application/json" class="xp-views">[
+    {"id":"all","label":"完整流程","focus":["input","interview","align","research","outline","draft","review","approve","deliver"],"note":"從最初的想法一路看到交稿。"},
+    {"id":"discover","label":"訪談對焦","focus":["input","interview","align"],"note":"先把作者想說的事問清楚，不先替作者決定答案。"},
+    {"id":"build","label":"查證與成稿","focus":["research","outline","draft","review"],"note":"把確認過的觀點與資料，逐步變成可讀的文章。"},
+    {"id":"finish","label":"定稿交付","focus":["review","approve","deliver"],"note":"最後由作者檢查、確認；是否發布由作者決定。"}
+  ]</script>
+  <div class="figure">
+  <svg class="xplore" viewBox="0 0 1120 1920" role="img" aria-labelledby="wa-flow-title wa-flow-desc">
+    <title id="wa-flow-title">寫作助手從訪談到定稿的完整流程</title>
+    <desc id="wa-flow-desc">作者提供想法後，助手一題一題訪談。方向不清就繼續訪談；方向清楚後查證事實、整理大綱並由作者確認，再寫初稿、依回饋修稿，最後經作者確認才交付。</desc>
+    <defs>
+      <marker id="wa-arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0L10 4L0 8Z" fill="#87867F"/></marker>
+      <marker id="wa-arrow-hot" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0L10 4L0 8Z" fill="#B85C3E"/></marker>
+    </defs>
+    <rect width="1120" height="1920" fill="#FAF9F5"/>
+    <!-- Connections are drawn before nodes. All branches use right-angle routes. -->
+    <g class="edge" data-from="input" data-to="interview" data-label="提供素材"><path class="hit" d="M560 146V200"/><path class="ln" d="M560 146V200"/></g>
+    <g class="edge" data-from="interview" data-to="align" data-label="整理後確認"><path class="hit" d="M560 324V390"/><path class="ln" d="M560 324V390"/></g>
+    <g class="edge" data-from="align" data-to="research" data-label="清楚"><path class="hit" d="M560 540V600"/><path class="ln" d="M560 540V600"/></g>
+    <g class="edge" data-from="align" data-to="interview" data-label="還不清楚"><path class="hit" d="M420 465H220V260H300"/><path class="ln" d="M420 465H220V260H300" marker-end="url(#wa-arrow-hot)"/></g>
+    <g class="edge" data-from="research" data-to="outline" data-label="資料整理完成"><path class="hit" d="M560 730V840"/><path class="ln" d="M560 730V840"/></g>
+    <g class="edge" data-from="outline" data-to="draft" data-label="作者確認大綱"><path class="hit" d="M560 990V1080"/><path class="ln" d="M560 990V1080"/></g>
+    <g class="edge" data-from="outline" data-to="research" data-label="需補資料或重整"><path class="hit" d="M420 915H184V665H300"/><path class="ln" d="M420 915H184V665H300" marker-end="url(#wa-arrow-hot)"/></g>
+    <g class="edge" data-from="draft" data-to="review" data-label="送作者閱讀"><path class="hit" d="M560 1210V1290"/><path class="ln" d="M560 1210V1290"/></g>
+    <g class="edge" data-from="review" data-to="approve" data-label="完成檢查"><path class="hit" d="M560 1415V1505"/><path class="ln" d="M560 1415V1505"/></g>
+    <g class="edge" data-from="approve" data-to="deliver" data-label="作者確認定稿"><path class="hit" d="M560 1655V1725"/><path class="ln" d="M560 1655V1725" marker-end="url(#wa-arrow-hot)"/></g>
+    <g class="edge" data-from="approve" data-to="draft" data-label="還要修改"><path class="hit" d="M700 1580H910V1145H820"/><path class="ln" d="M700 1580H910V1145H820" marker-end="url(#wa-arrow-hot)"/></g>
+
+    <!-- Decision labels sit beside each branch with an ivory mask and clear gap. -->
+    <g class="elabel" data-label="方向清楚"><rect x="572" y="552" width="68" height="22" rx="4" fill="#FAF9F5"/><text class="label" x="580" y="568">方向清楚</text></g>
+    <g class="elabel" data-label="繼續訪談"><rect x="226" y="376" width="82" height="22" rx="4" fill="#FAF9F5"/><text class="label" x="232" y="392">繼續訪談</text></g>
+    <g class="elabel" data-label="作者確認大綱"><rect x="572" y="1022" width="96" height="22" rx="4" fill="#FAF9F5"/><text class="label" x="578" y="1038">作者確認大綱</text></g>
+    <g class="elabel" data-label="補資料或重整"><rect x="192" y="776" width="100" height="22" rx="4" fill="#FAF9F5"/><text class="label" x="198" y="792">補資料或重整</text></g>
+    <g class="elabel" data-label="作者確認定稿"><rect x="572" y="1677" width="96" height="22" rx="4" fill="#FAF9F5"/><text class="label" x="578" y="1693">作者確認定稿</text></g>
+    <g class="elabel" data-label="退回修改"><rect x="920" y="1352" width="68" height="22" rx="4" fill="#FAF9F5"/><text class="label" x="926" y="1368">退回修改</text></g>
+
+    <g class="node" data-id="input" data-kind="user" data-title="作者提供起點" tabindex="0" role="button" aria-label="作者提供起點：點選查看說明">
+      <rect class="box" x="340" y="72" width="440" height="74" rx="28"/>
+      <text class="n" x="560" y="103" text-anchor="middle">作者提供起點</text><text class="sub" x="560" y="126" text-anchor="middle">一個念頭、畫面、問題、素材或想說的感受</text>
+    </g>
+    <g class="node" data-id="interview" data-kind="ours" data-title="一題一題訪談" tabindex="0" role="button" aria-label="一題一題訪談：點選查看說明">
+      <rect class="box" x="300" y="200" width="520" height="124" rx="8"/>
+      <text class="n" x="560" y="236" text-anchor="middle">一題一題訪談</text>
+      <text class="sub" x="560" y="263" text-anchor="middle">先聽懂，再追問；每次只問一個關鍵問題</text>
+      <text class="sub" x="560" y="286" text-anchor="middle">把讀者、目的、場景、感受、主張與界線問出來</text>
+    </g>
+    <g class="node" data-id="align" data-kind="decision" data-title="訪談對焦門檻" tabindex="0" role="button" aria-label="訪談對焦門檻：點選查看說明">
+      <polygon class="box" points="560,390 700,465 560,540 420,465"/>
+      <text class="n" x="560" y="459" text-anchor="middle">你想說的事，</text><text class="n" x="560" y="480" text-anchor="middle">現在清楚了嗎？</text>
+    </g>
+    <g class="node" data-id="research" data-kind="ours" data-title="查證材料" tabindex="0" role="button" aria-label="查證材料：點選查看說明">
+      <rect class="box" x="300" y="600" width="520" height="130" rx="8"/>
+      <text class="n" x="560" y="638" text-anchor="middle">查證材料，不把猜測寫成事實</text>
+      <text class="sub" x="560" y="666" text-anchor="middle">分開「作者經驗、觀點」與「需要證據的外部說法」</text>
+      <text class="sub" x="560" y="690" text-anchor="middle">缺資料就標出來；涉及時效的內容先找可靠來源</text>
+    </g>
+    <g class="node" data-id="outline" data-kind="decision" data-title="大綱與方向確認" tabindex="0" role="button" aria-label="大綱與方向確認：點選查看說明">
+      <polygon class="box" points="560,840 700,915 560,990 420,915"/>
+      <text class="n" x="560" y="909" text-anchor="middle">大綱與核心觀點</text><text class="n" x="560" y="930" text-anchor="middle">你確認了嗎？</text>
+    </g>
+    <g class="node" data-id="draft" data-kind="ours" data-title="初稿與修改" tabindex="0" role="button" aria-label="初稿與修改：點選查看說明">
+      <rect class="box" x="300" y="1080" width="520" height="130" rx="8"/>
+      <text class="n" x="560" y="1118" text-anchor="middle">寫初稿，照你的回饋反覆修改</text>
+      <text class="sub" x="560" y="1146" text-anchor="middle">不擅自換主張、不補造經歷、不硬塞範例</text>
+      <text class="sub" x="560" y="1170" text-anchor="middle">讀起來不像你，就指出是哪裡不像，再改那一段</text>
+    </g>
+    <g class="node" data-id="review" data-kind="ours" data-title="定稿前檢查" tabindex="0" role="button" aria-label="定稿前檢查：點選查看說明">
+      <rect class="box" x="300" y="1290" width="520" height="125" rx="8"/>
+      <text class="n" x="560" y="1328" text-anchor="middle">定稿前檢查</text>
+      <text class="sub" x="560" y="1356" text-anchor="middle">事實、主張、前後連接、讀者、語氣與格式</text>
+      <text class="sub" x="560" y="1380" text-anchor="middle">必要時回到查證或修改，不用「看起來完整」冒充完成</text>
+    </g>
+    <g class="node" data-id="approve" data-kind="decision" data-title="作者定稿門檻" tabindex="0" role="button" aria-label="作者定稿門檻：點選查看說明">
+      <polygon class="box" points="560,1505 700,1580 560,1655 420,1580"/>
+      <text class="n" x="560" y="1575" text-anchor="middle">這篇是你要的</text><text class="n" x="560" y="1596" text-anchor="middle">定稿嗎？</text>
+    </g>
+    <g class="node" data-id="deliver" data-kind="output" data-title="交付與保存" tabindex="0" role="button" aria-label="交付與保存：點選查看說明">
+      <rect class="box" x="300" y="1725" width="520" height="130" rx="8"/>
+      <text class="n" x="560" y="1763" text-anchor="middle">交付你確認過的版本</text>
+      <text class="sub" x="560" y="1791" text-anchor="middle">依你指定的格式與位置保存</text>
+      <text class="sub" x="560" y="1815" text-anchor="middle">發布或寄出，只有你明確要求才執行</text>
+    </g>
+    <g class="lg" data-kind="user" tabindex="0" role="button" aria-label="作者提供的內容"><rect x="260" y="1880" width="14" height="14" rx="3" fill="#F0EEE6" stroke="#87867F"/><text x="282" y="1892">作者提供</text></g>
+    <g class="lg" data-kind="ours" tabindex="0" role="button" aria-label="助手負責的處理"><rect x="440" y="1880" width="14" height="14" rx="3" fill="#fff" stroke="#87867F"/><text x="462" y="1892">助手處理</text></g>
+    <g class="lg" data-kind="decision" tabindex="0" role="button" aria-label="需要確認的關卡"><polygon points="650,1887 658,1895 650,1903 642,1895" fill="#fff" stroke="#141413"/><text x="668" y="1899">確認關卡</text></g>
+  </svg>
+  </div>
+  </div>
+  <div class="flow-note"><p><strong>誰決定？</strong>助手可以訪談、整理、查資料、寫草稿；主張要不要成立、哪個版本是定稿、要不要發布，都由作者決定。</p></div>
+</section>
+
+<section id="interview">
+  <div class="section-head"><span class="section-no">02</span><h2>訪談不是填問卷，是一起把話問清楚</h2></div>
+  <div class="role-grid">
+    <div class="role"><h3>寫作者提供</h3><p>一個題目、一段素材、一個工作問題，或「我知道哪裡怪，但還說不出來」的感覺。可以先講零碎內容，不必先整理成漂亮答案。</p></div>
+    <div class="role"><h3>助手負責追問</h3><p>一次只問一題，依回答往下挖。先理解，不急著寫；不把自己的答案塞進問題，也不重問已經回答過的內容。</p></div>
+  </div>
+  <div class="cards" style="margin-top:calc(14px * var(--dens, 1))">
+    <article class="card"><div class="tag">訪談會逐步釐清</div><h3>這篇文章要站在哪裡</h3><ul><li>要對誰說？他目前知道什麼、還沒看見什麼？</li><li>讀完希望他理解、感受或採取什麼行動？</li><li>作者真正想表達的主張是什麼？哪些地方仍不確定？</li></ul></article>
+    <article class="card"><div class="tag">訪談會逐步釐清</div><h3>這個觀點從哪裡來</h3><ul><li>當時發生什麼事？有什麼具體場景、對話或細節？</li><li>作者感受到什麼，前後想法有沒有改變？</li><li>哪些經驗能寫，哪些隱私或界線不能越過？</li></ul></article>
+  </div>
+</section>
+
+<section id="gates">
+  <div class="section-head"><span class="section-no">03</span><h2>每一關都有「停下來確認」的理由</h2></div>
+  <div class="cards">
+    <article class="card"><div class="tag">關卡 A · 訪談後</div><h3>先確認方向，不替作者定義</h3><p>助手整理「目標讀者、文章目的、核心主張、關鍵感受、可用素材、不能越過的界線」，請作者確認。還不清楚就繼續訪談，不直接跳到寫稿。</p></article>
+    <article class="card"><div class="tag">關卡 B · 大綱後</div><h3>先確認文章怎麼走</h3><p>助手交出段落順序與每段要完成的工作。作者可改順序、刪觀點、補背景；方向沒確認，不把大綱當成已核准。</p></article>
+    <article class="card"><div class="tag">關卡 C · 定稿前</div><h3>先檢查，再由作者點頭</h3><p>助手核對事實、主張、上下文、讀者理解、語氣、隱私與格式；作者確認後才標記定稿。沒有作者確認，就仍是草稿。</p></article>
+    <article class="card"><div class="tag">發布權仍在作者</div><h3>交稿不等於替你發布</h3><p>存檔、寄出、貼文或送交客戶是不同動作。助手只做作者明確指定的交付，不因文章「已完成」就自行對外發布。</p></article>
+  </div>
+</section>
+
+<section id="quality">
+  <div class="section-head"><span class="section-no">04</span><h2>查證、寫作與修稿的共同規則</h2></div>
+  <div class="cards">
+    <article class="card"><div class="tag">查證</div><h3>經驗、觀點、外部事實分開</h3><p>作者親身經歷不冒充普遍事實；外部數字、法律、人物近況等需查證的內容要有來源。查不到或互相矛盾就標明，不補想像答案。</p></article>
+    <article class="card"><div class="tag">成稿</div><h3>先守住文章主線</h3><p>每一段要接得上前後文，並服務同一個核心觀點。需要背景才看得懂的比喻、專有名詞或政治論述，要先說清楚它和主線的關係；不相干就拿掉。</p></article>
+    <article class="card"><div class="tag">修稿</div><h3>收到「看不懂」就換講法</h3><p>不只刪字，還要找出讀者在哪裡失去脈絡：對象不明、因果跳接、數字難懂、例子不相關，或把作者的意思改掉。一次修一個問題，再讓作者檢查。</p></article>
+    <article class="card"><div class="tag">通用系統</div><h3>作者偏好是可選設定，不是預設人格</h3><p>不同人可設定文章平台、讀者、口吻、長度、查證要求與保存方式。沒有設定的項目先詢問或採安全預設；不把某位作者的故事、禁令或口頭禪套到別人身上。</p><details class="reveal"><summary>展開：每位使用者可以設定什麼</summary><p>可設定常寫的文章類型、讀者背景、語氣、字數、引用方式、隱私規範、輸出格式與存檔位置。每個設定都能修改或清除；未設定時不假裝知道使用者偏好。</p></details></article>
+  </div>
+</section>
+
+<section id="delivery">
+  <div class="section-head"><span class="section-no">05</span><h2>最後交付什麼</h2></div>
+  <div class="role-grid">
+    <div class="role"><h3>一篇作者認可的文章</h3><p>文章有清楚讀者、明確主張、可理解的因果與經作者確認的語氣；需要查證的內容有依據或清楚標示限制。</p></div>
+    <div class="role"><h3>一份可回頭追溯的材料</h3><p>保存已確認的訪談摘要、大綱、查證來源、定稿版本與作者要求的格式。哪些項目留存，由作者或系統設定決定。</p></div>
+  </div>
+  <div class="gate"><strong>最重要的邊界：</strong>AI 可以幫你把想法問清楚、把資料整理好、把文字寫得更容易讀；但你要相信什麼、想說什麼、最後交出哪一版，仍由你選。</div>
+</section>
+<footer>寫作助手完整流程圖 · 2026-10-10 · 流程說明頁；流程規格是否已寫入 Skill / SR，需以對應文件的實際變更為準。</footer>
+</div>
+
+<template data-detail="input" data-title="作者提供起點" data-tag="第 1 步">
+<p>作者不必先交一份完整企劃。可以從一句想法、一段逐字稿、一份工作素材或一個未解的感受開始。</p><p>助手先確認這次是要發想、整理、寫稿、改稿，還是研究後再寫。</p>
+</template>
+<template data-detail="interview" data-title="一題一題訪談" data-tag="核心方式">
+<ul><li>一次只問一題，依作者回答接著問。</li><li>不用示範答案帶風向，也不重複問已回答的內容。</li><li>逐步弄清楚讀者、目的、觀點、感受、具體素材與界線。</li><li>作者說「不知道」時，協助把抽象感覺拆成可回答的小問題。</li></ul>
+</template>
+<template data-detail="align" data-title="訪談對焦門檻" data-tag="不清楚就回頭">
+<p>方向至少包括：文章要對誰說、要說明什麼、作者真正主張什麼，以及哪些素材不能使用。作者還沒認可，不進入大綱定稿。</p>
+</template>
+<template data-detail="research" data-title="查證材料" data-tag="不補造事實">
+<p>把作者提供的經驗和外部可查證的主張分開。涉及新近資料、統計、人物、政策或法律時，先找可信來源，並保留來源與不確定處。</p>
+</template>
+<template data-detail="outline" data-title="大綱與方向確認" data-tag="先看文章怎麼走">
+<p>大綱說明每一段為什麼存在、如何把讀者帶到下一段。作者可以直接調整；未確認的大綱不當作寫稿授權。</p>
+</template>
+<template data-detail="draft" data-title="初稿與修改" data-tag="來回修稿">
+<p>初稿只使用已確認的素材和查證結果。作者回饋後，助手指出修改落在哪些段落；若回饋代表主張改變，退回訪談或大綱，不只修表面句子。</p>
+</template>
+<template data-detail="review" data-title="定稿前檢查" data-tag="品質檢核">
+<p>檢查事實是否有依據、段落有沒有跳接、讀者能否看懂、語氣是否符合作者偏好，以及隱私和格式要求是否遵守。</p>
+</template>
+<template data-detail="approve" data-title="作者定稿門檻" data-tag="最後決定權在作者">
+<p>只有作者明確表示確認，才把版本標成定稿。助手的「寫完」或檢查通過，不等於作者同意。</p>
+</template>
+<template data-detail="deliver" data-title="交付與保存" data-tag="依使用者指示">
+<p>輸出到指定位置與平台格式。發布、寄送或提交給第三方屬於對外動作，必須有明確授權。</p>
+</template>
+
+<script>
+window.VT_SESSION = { label: "writing-editor · feat/po-li-gan-guan-author-style", id: "local", project: "writing-editor" };
+(function(){
+  var s=window.VT_SESSION||{};
+  if(!s.label)return;
+  var seed=s.id||s.label,hue=7;
+  for(var i=0;i<seed.length;i++)hue=(hue*31+seed.charCodeAt(i))%360;
+  var color="hsl("+hue+" 58% 42%)";
+  document.title=s.label+" · "+document.title;
+  try{
+    var canvas=document.createElement("canvas");canvas.width=canvas.height=64;
+    var ctx=canvas.getContext("2d");ctx.fillStyle=color;ctx.fillRect(2,2,60,60);
+    ctx.fillStyle="#fff";ctx.font='700 38px system-ui';ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("寫",32,36);
+    var link=document.createElement("link");link.rel="icon";link.href=canvas.toDataURL();document.head.appendChild(link);
+  }catch(e){}
+  var badge=document.createElement("div");badge.className="vt-session-badge";badge.style.setProperty("--vt-session-color",color);
+  badge.innerHTML='<span class="dot"></span><span class="lb"></span><span class="id"></span>';
+  badge.querySelector(".lb").textContent=s.label;badge.querySelector(".id").textContent=s.id;
+  var host=document.querySelector("header")||document.body;host.insertBefore(badge,host.firstChild);
+})();
+</script>
+<script>
+/* 結構圖探索層＋浮動說明窗 — 與 diagram-explore.css 成對，整段內嵌進頁面 body 結尾前的 script 標籤裡。
+ * （本檔任何地方都不能出現 script 的結尾標籤字樣，否則內嵌時瀏覽器會在那裡把腳本切斷。）
+ *
+ * 作者只要：① 圖包在 div.xp[data-explore] 裡；② svg 加 class xplore；
+ * ③ 每個節點 g.node[data-id][data-kind][data-title] 內含 rect.box；
+ * ④ 每條線 g.edge[data-from][data-to][data-label] 內含 path.hit（透明寬）與 path.ln；
+ * ⑤ 線的標籤 g.elabel（文字＝data-label 才能一起變亮）；圖例項 g.lg[data-kind]；
+ * ⑥ 選配：容器內 script[type=application/json].xp-views，內容 [{id,label,focus:[ids],note}]；
+ * ⑦ 選配：每格的說明寫成 template[data-detail="<節點 id>"]（可加 data-tag="等你拍板" 之類的標籤），
+ *    裡面寫一般 HTML；圖外的元素加 data-detail-open="<id>" 也能開同一個窗（id 對到 template 即可）。
+ * 點一格 → 浮動窗上半是這格的說明（沒寫就只有連線資訊），下半是上下游與追線按鈕。
+ * 窗可拖、可換邊、開在所點格子的對面；點窗外任何地方、按 esc 或 ✕ 關閉；手機（≤760px）變底部抽屜。
+ * 深連結：#focus=id / #focus=id&reach=up|down / #route=a~b / #view=id（只作用在第一張圖）。
+ */
+(function () {
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const HINT =
+    "點一格看說明與上下游；<kbd>shift</kbd>＋點第二格找兩格之間的路徑；點圖例可暫時藏掉一類；<kbd>esc</kbd> 關閉";
+  const esc = (s) =>
+    String(s).replace(
+      /[&<>"]/g,
+      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
+    );
+
+  // ── 全頁共用的浮動說明窗 ─────────────────────────
+  const panel = document.createElement("aside");
+  panel.className = "xp-panel";
+  panel.hidden = true;
+  panel.setAttribute("aria-label", "說明");
+  panel.innerHTML =
+    '<div class="xp-grip" title="按住拖曳"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/></svg>按住這裡拖曳</div>' +
+    '<button class="xp-ibtn xp-flip" type="button" title="換到另一邊" aria-label="換到另一邊"><svg viewBox="0 0 24 24"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg></button>' +
+    '<button class="xp-ibtn xp-close" type="button" aria-label="關閉"><svg viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>' +
+    '<span class="xp-tag"></span><h3 class="xp-title"></h3><div class="xp-body"></div><div class="xp-nav"></div>';
+  document.body.appendChild(panel);
+  const pTag = panel.querySelector(".xp-tag");
+  const pTitle = panel.querySelector(".xp-title");
+  const pBody = panel.querySelector(".xp-body");
+  const pNav = panel.querySelector(".xp-nav");
+  let owner = null; // 目前佔用窗的那張圖（instance），圖外開窗時為 null
+  let navHandler = null;
+
+  const isSheet = () => window.innerWidth <= 760;
+  let userMoved = false;
+  function resetPos() {
+    ["left", "right", "top", "bottom", "height"].forEach(
+      (k) => (panel.style[k] = ""),
+    );
+  }
+  function setSide(side) {
+    resetPos();
+    if (side === "left") {
+      panel.style.left = "18px";
+      panel.style.right = "auto";
+    }
+    userMoved = false;
+  }
+  function place(anchor) {
+    if (isSheet()) return resetPos();
+    const ar = anchor ? anchor.getBoundingClientRect() : null;
+    const side =
+      ar && ar.left + ar.width / 2 > window.innerWidth / 2 ? "left" : "right";
+    if (!userMoved) return setSide(side);
+    if (!ar) return;
+    const pr = panel.getBoundingClientRect();
+    const overlap = !(
+      ar.right < pr.left ||
+      ar.left > pr.right ||
+      ar.bottom < pr.top ||
+      ar.top > pr.bottom
+    );
+    if (overlap) setSide(side);
+  }
+  function findTemplate(id, scope) {
+    const sel = 'template[data-detail="' + CSS.escape(id) + '"]';
+    return (scope && scope.querySelector(sel)) || document.querySelector(sel);
+  }
+  // 開窗：title、tag、說明（template 或 fallback 字串）、下半部導覽（HTML 字串＋點擊處理）
+  function openPanel(o) {
+    pTag.textContent = o.tag || "";
+    pTag.hidden = !o.tag;
+    pTitle.textContent = o.title || "";
+    pBody.textContent = "";
+    if (o.template) pBody.appendChild(o.template.content.cloneNode(true));
+    else if (o.fallback)
+      pBody.innerHTML = '<p class="xp-dim">' + o.fallback + "</p>";
+    pNav.innerHTML = o.nav || "";
+    pNav.hidden = !o.nav;
+    navHandler = o.onNav || null;
+    // 換到另一張圖（或圖外開窗）時，把前一張圖的聚焦變暗清掉
+    if (owner && owner !== (o.owner || null)) owner.reset();
+    owner = o.owner || null;
+    const wasHidden = panel.hidden;
+    panel.hidden = false;
+    if (wasHidden) panel.scrollTop = 0;
+    place(o.anchor || null);
+  }
+  function closePanel() {
+    if (panel.hidden) return;
+    panel.hidden = true;
+    const o = owner;
+    owner = null;
+    navHandler = null;
+    if (o) o.reset();
+  }
+  pNav.addEventListener("click", (ev) => {
+    const b = ev.target.closest("button");
+    if (b && navHandler) navHandler(b);
+  });
+  panel.querySelector(".xp-close").addEventListener("click", closePanel);
+  panel.querySelector(".xp-flip").addEventListener("click", () => {
+    const pr = panel.getBoundingClientRect();
+    setSide(pr.left + pr.width / 2 > window.innerWidth / 2 ? "left" : "right");
+  });
+  const grip = panel.querySelector(".xp-grip");
+  let drag = null;
+  grip.addEventListener("pointerdown", (ev) => {
+    if (isSheet()) return;
+    const r = panel.getBoundingClientRect();
+    drag = { dx: ev.clientX - r.left, dy: ev.clientY - r.top, h: r.height };
+    Object.assign(panel.style, {
+      left: r.left + "px",
+      top: r.top + "px",
+      right: "auto",
+      bottom: "auto",
+      height: r.height + "px",
+    });
+    panel.classList.add("dragging");
+    grip.setPointerCapture(ev.pointerId);
+    ev.preventDefault();
+  });
+  grip.addEventListener("pointermove", (ev) => {
+    if (!drag) return;
+    const w = panel.offsetWidth;
+    const x = Math.min(
+      Math.max(ev.clientX - drag.dx, 8),
+      window.innerWidth - w - 8,
+    );
+    const y = Math.min(
+      Math.max(ev.clientY - drag.dy, 8),
+      window.innerHeight - 120,
+    );
+    panel.style.left = x + "px";
+    panel.style.top = y + "px";
+    panel.style.height =
+      Math.max(220, Math.min(drag.h, window.innerHeight - y - 24)) + "px";
+  });
+  const endDrag = () => {
+    if (!drag) return;
+    drag = null;
+    userMoved = true;
+    panel.classList.remove("dragging");
+  };
+  grip.addEventListener("pointerup", endDrag);
+  grip.addEventListener("pointercancel", endDrag);
+  // 窗開著時把視窗縮到手機寬：清掉桌機留下的座標，抽屜才不會往右凸出
+  window.addEventListener("resize", () => {
+    if (!panel.hidden && isSheet()) {
+      resetPos();
+      userMoved = false;
+    }
+  });
+  // 點窗外任何地方就關。例外：窗本身、開窗按鈕、章節列、圖例、風格設定面板（在這些地方操作不該把窗關掉）；
+  // 節點與線的點擊自己 stopPropagation，換格不會先關再開。
+  // 用事件發生當下的路徑判斷：窗裡的按鈕按下去會重畫導覽區，按鈕本身已被移除，
+  // 用 ev.target.closest 會找不到它屬於窗、誤判成點窗外而把窗關掉。
+  // 評論工具：在窗裡選字留言時，按「評論」不該把窗關掉
+  const KEEP =
+    ".xp-panel, [data-detail-open], .xp-views, svg.xplore .lg, .vt-tw-root, .vt-comment-trigger, .vt-comment-popup";
+  document.addEventListener("click", (ev) => {
+    if (panel.hidden) return;
+    if (ev.composedPath().some((el) => el.matches && el.matches(KEEP))) return;
+    closePanel();
+  });
+  document.addEventListener("keydown", (ev) => {
+    if (ev.key === "Escape") {
+      if (!panel.hidden) closePanel();
+      else instances.forEach((i) => i.reset());
+    }
+  });
+  // 圖外元素開窗（例如規格頁的「規則一」「規則二」按鈕）
+  document.querySelectorAll("[data-detail-open]").forEach((b) => {
+    b.addEventListener("click", () => {
+      const id = b.getAttribute("data-detail-open");
+      const t = findTemplate(id, null);
+      if (!t)
+        return console.error(
+          "data-detail-open 找不到對應的 template[data-detail]",
+          id,
+        );
+      instances.forEach((i) => i.clear());
+      openPanel({
+        title: t.getAttribute("data-title") || id,
+        tag: t.getAttribute("data-tag") || "",
+        template: t,
+        anchor: b,
+      });
+    });
+  });
+
+  // ── 每張圖 ─────────────────────────────────────
+  function setup(root, idx) {
+    const svg = root.querySelector("svg.xplore");
+    if (!svg) return null;
+    let views = [];
+    const vj = root.querySelector("script.xp-views");
+    if (vj) {
+      try {
+        views = JSON.parse(vj.textContent);
+      } catch (e) {
+        console.error("xp-views JSON 壞了", e);
+      }
+    }
+    const fig = svg.closest(".figure") || svg;
+    const main = document.createElement("div");
+    main.className = "xp-main";
+    fig.parentNode.insertBefore(main, fig);
+    const viewsBar = document.createElement("div");
+    viewsBar.className = "xp-views";
+    const hintEl = document.createElement("div");
+    hintEl.className = "xp-hint";
+    hintEl.innerHTML = HINT;
+    const noteEl = document.createElement("div");
+    noteEl.className = "xp-note";
+    main.append(viewsBar, hintEl, noteEl, fig);
+    if (!views.length) viewsBar.remove();
+    const uid = "xp" + idx + "-hot";
+    let defs = svg.querySelector("defs");
+    if (!defs) {
+      defs = document.createElementNS(SVGNS, "defs");
+      svg.insertBefore(defs, svg.firstChild);
+    }
+    const mk = document.createElementNS(SVGNS, "marker");
+    mk.setAttribute("id", uid);
+    mk.setAttribute("markerWidth", "8");
+    mk.setAttribute("markerHeight", "6");
+    mk.setAttribute("refX", "7");
+    mk.setAttribute("refY", "3");
+    mk.setAttribute("orient", "auto");
+    const poly = document.createElementNS(SVGNS, "polygon");
+    poly.setAttribute("points", "0 0, 8 3, 0 6");
+    poly.setAttribute("class", "ordbg");
+    mk.appendChild(poly);
+    defs.appendChild(mk);
+
+    const nodes = [...svg.querySelectorAll(".node")],
+      edges = [...svg.querySelectorAll(".edge")];
+    const byId = Object.fromEntries(nodes.map((n) => [n.dataset.id, n]));
+    const out = {},
+      inn = {};
+    nodes.forEach((n) => {
+      out[n.dataset.id] = [];
+      inn[n.dataset.id] = [];
+    });
+    const bad = [];
+    edges.forEach((e) => {
+      if (!byId[e.dataset.from] || !byId[e.dataset.to]) {
+        bad.push(e.dataset.from + "→" + e.dataset.to);
+        return;
+      }
+      out[e.dataset.from].push(e);
+      inn[e.dataset.to].push(e);
+    });
+    if (bad.length)
+      console.error("探索層：這些線的端點沒有對應的 data-id", bad);
+    const labelOf = {};
+    svg.querySelectorAll(".elabel").forEach((g) => {
+      labelOf[g.textContent.trim()] = g;
+    });
+    edges.forEach((e) => {
+      e._label = labelOf[(e.dataset.label || "").trim()] || null;
+    });
+
+    const state = { focus: null, mode: "focus", view: null };
+    const title = (id) => byId[id].dataset.title || id;
+    function clear() {
+      svg.classList.remove("has-focus");
+      nodes.forEach((n) => {
+        n.classList.remove("on", "is-focus");
+        n.querySelectorAll(".ordwrap").forEach((x) => x.remove());
+      });
+      edges.forEach((e) => {
+        e.classList.remove("on");
+        e.querySelector(".ln").style.markerEnd = "";
+        e._label && e._label.classList.remove("on");
+      });
+    }
+    const lightNodes = (ids) =>
+      ids.forEach((id) => byId[id] && byId[id].classList.add("on"));
+    function lightEdge(e) {
+      e.classList.add("on");
+      e.querySelector(".ln").style.markerEnd = "url(#" + uid + ")";
+      e._label && e._label.classList.add("on");
+    }
+    function reach(id, dir) {
+      const seen = new Set([id]),
+        q = [id],
+        es = [];
+      while (q.length) {
+        const c = q.shift();
+        (dir === "down" ? out[c] : inn[c]).forEach((e) => {
+          es.push(e);
+          const n = dir === "down" ? e.dataset.to : e.dataset.from;
+          if (!seen.has(n)) {
+            seen.add(n);
+            q.push(n);
+          }
+        });
+      }
+      return { nodes: [...seen], edges: es };
+    }
+    function path(a, b) {
+      const prev = { [a]: null },
+        q = [a];
+      while (q.length) {
+        const c = q.shift();
+        if (c === b) break;
+        for (const e of out[c]) {
+          const n = e.dataset.to;
+          if (!(n in prev)) {
+            prev[n] = { from: c, edge: e };
+            q.push(n);
+          }
+        }
+      }
+      if (!(b in prev)) return null;
+      const steps = [];
+      let c = b;
+      while (prev[c]) {
+        steps.unshift(prev[c]);
+        c = prev[c].from;
+      }
+      return steps;
+    }
+    const setHash = (h) => {
+      if (idx === 0)
+        history.replaceState(
+          null,
+          "",
+          h ? "#" + h : location.pathname + location.search,
+        );
+    };
+    function order(id, i) {
+      const r = byId[id].querySelector(".box");
+      const x = +r.getAttribute("x") || 0,
+        y = +r.getAttribute("y") || 0;
+      const g = document.createElementNS(SVGNS, "g");
+      g.setAttribute("class", "ordwrap");
+      g.innerHTML =
+        '<circle class="ordbg" cx="' +
+        x +
+        '" cy="' +
+        y +
+        '" r="9"/><text class="ord" x="' +
+        x +
+        '" y="' +
+        (y + 3.5) +
+        '" text-anchor="middle">' +
+        i +
+        "</text>";
+      byId[id].appendChild(g);
+    }
+    function setActiveView(id) {
+      viewsBar
+        .querySelectorAll("button")
+        .forEach((b) => b.classList.toggle("active", b.dataset.view === id));
+    }
+    const btn = (act, text, extra) =>
+      '<button type="button" data-act="' +
+      act +
+      '"' +
+      (extra || "") +
+      ">" +
+      text +
+      "</button>";
+    function onNav(b) {
+      const a = b.dataset.act;
+      if (a === "clear") closePanel();
+      else if (a === "up" || a === "down") showReach(state.focus, a);
+      else if (a === "back") showFocus(state.focus);
+      else if (a === "route") {
+        state.mode = "route";
+        b.classList.add("active");
+        noteEl.textContent = "現在點第二格。";
+      } else if (a === "rev") showRoute(b.dataset.a, b.dataset.b);
+      else if (a === "prev" || a === "next") {
+        const i = views.findIndex((v) => v.id === state.view);
+        showView(
+          views[(i + (a === "next" ? 1 : views.length - 1)) % views.length],
+        );
+      }
+    }
+    function open(o) {
+      openPanel(Object.assign({ owner: api, onNav }, o));
+    }
+    function showFocus(id, anchor) {
+      clear();
+      state.focus = id;
+      state.view = null;
+      setActiveView(null);
+      svg.classList.add("has-focus");
+      byId[id].classList.add("on", "is-focus");
+      const up = inn[id].map((e) => e.dataset.from),
+        down = out[id].map((e) => e.dataset.to);
+      lightNodes(up.concat(down));
+      inn[id].concat(out[id]).forEach(lightEdge);
+      const t = findTemplate(id, root);
+      noteEl.textContent = "";
+      open({
+        title: title(id),
+        tag: t ? t.getAttribute("data-tag") || "" : "",
+        template: t,
+        fallback: t ? "" : "這格沒有另外寫說明，下面是它直接相連的格子。",
+        anchor: anchor || byId[id],
+        nav:
+          '<div class="xp-row">上游 ' +
+          up.length +
+          "：" +
+          (esc(up.map(title).join("、")) || "—") +
+          "</div>" +
+          '<div class="xp-row">下游 ' +
+          down.length +
+          "：" +
+          (esc(down.map(title).join("、")) || "—") +
+          "</div>" +
+          '<div class="xp-btns">' +
+          btn("up", "往上游追到底") +
+          btn("down", "往下游追到底") +
+          btn("route", "從這裡找路徑…") +
+          btn("clear", "清除") +
+          "</div>",
+      });
+      setHash("focus=" + id);
+    }
+    function showReach(id, dir) {
+      clear();
+      svg.classList.add("has-focus");
+      byId[id].classList.add("on", "is-focus");
+      const r = reach(id, dir);
+      lightNodes(r.nodes);
+      r.edges.forEach(lightEdge);
+      const others = r.nodes.filter((n) => n !== id);
+      pNav.innerHTML =
+        '<div class="xp-row"><b>' +
+        (dir === "down" ? "下游" : "上游") +
+        "全部 " +
+        others.length +
+        " 格</b>（沿箭頭可達、只看圖上畫出來的關係）</div>" +
+        '<div class="xp-row">' +
+        (esc(others.map(title).join("、")) || "—") +
+        "</div>" +
+        '<div class="xp-btns">' +
+        btn("back", "回到相鄰") +
+        btn("clear", "清除") +
+        "</div>";
+      setHash("focus=" + id + "&reach=" + dir);
+    }
+    function showRoute(a, b) {
+      const st = path(a, b);
+      clear();
+      state.view = null;
+      state.mode = "focus";
+      setActiveView(null);
+      svg.classList.add("has-focus");
+      noteEl.textContent = "";
+      if (!st) {
+        byId[a].classList.add("on");
+        byId[b].classList.add("on");
+        open({
+          title: title(a) + " → " + title(b),
+          fallback: "圖上沒有這個方向的路徑。",
+          anchor: byId[b],
+          nav:
+            '<div class="xp-btns">' +
+            btn(
+              "rev",
+              "反向找",
+              ' data-a="' + esc(b) + '" data-b="' + esc(a) + '"',
+            ) +
+            btn("clear", "清除") +
+            "</div>",
+        });
+        return;
+      }
+      byId[a].classList.add("on", "is-focus");
+      order(a, 1);
+      st.forEach((s, i) => {
+        lightEdge(s.edge);
+        byId[s.edge.dataset.to].classList.add("on");
+        order(s.edge.dataset.to, i + 2);
+      });
+      open({
+        title: title(a) + " → " + title(b),
+        fallback: st.length + " 步，最短有向路徑",
+        anchor: byId[b],
+        nav:
+          "<ol>" +
+          st
+            .map(
+              (s) =>
+                "<li>" +
+                esc(title(s.from)) +
+                ' <span class="xp-dim">' +
+                esc(
+                  s.edge.dataset.label ? "—" + s.edge.dataset.label + "→" : "→",
+                ) +
+                "</span> " +
+                esc(title(s.edge.dataset.to)) +
+                "</li>",
+            )
+            .join("") +
+          '</ol><div class="xp-btns">' +
+          btn("clear", "清除") +
+          "</div>",
+      });
+      setHash("route=" + a + "~" + b);
+    }
+    function showView(v) {
+      clear();
+      state.view = v.id;
+      svg.classList.add("has-focus");
+      lightNodes(v.focus);
+      const set = new Set(v.focus);
+      edges.forEach((e) => {
+        if (set.has(e.dataset.from) && set.has(e.dataset.to)) lightEdge(e);
+      });
+      setActiveView(v.id);
+      noteEl.textContent = v.note || "";
+      open({
+        title: v.label,
+        fallback: "這一章點亮 " + v.focus.length + " 格",
+        anchor: viewsBar,
+        nav:
+          "<ul>" +
+          v.focus
+            .filter((id) => byId[id])
+            .map((id) => "<li>" + esc(title(id)) + "</li>")
+            .join("") +
+          "</ul>" +
+          '<div class="xp-btns">' +
+          btn("prev", "上一章") +
+          btn("next", "下一章") +
+          btn("clear", "清除") +
+          "</div>",
+      });
+      setHash("view=" + v.id);
+    }
+    function reset() {
+      clear();
+      state.focus = null;
+      state.view = null;
+      state.mode = "focus";
+      setActiveView(null);
+      noteEl.textContent = "";
+      setHash("");
+    }
+
+    views.forEach((v) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.dataset.view = v.id;
+      b.textContent = v.label;
+      b.addEventListener("click", () => showView(v));
+      viewsBar.appendChild(b);
+    });
+    nodes.forEach((n) => {
+      n.setAttribute("tabindex", "0");
+      n.setAttribute("role", "button");
+      n.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        const id = n.dataset.id;
+        if (
+          (ev.shiftKey || state.mode === "route") &&
+          state.focus &&
+          state.focus !== id &&
+          owner === api
+        ) {
+          state.mode = "focus";
+          showRoute(state.focus, id);
+        } else showFocus(id, n);
+      });
+      n.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") {
+          ev.preventDefault();
+          n.click();
+        }
+      });
+    });
+    edges.forEach((e) => {
+      e.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        clear();
+        state.view = null;
+        setActiveView(null);
+        svg.classList.add("has-focus");
+        lightEdge(e);
+        byId[e.dataset.from].classList.add("on");
+        byId[e.dataset.to].classList.add("on");
+        open({
+          title: title(e.dataset.from) + " → " + title(e.dataset.to),
+          fallback: esc(e.dataset.label || "（無標籤）"),
+          anchor: e,
+          nav: '<div class="xp-btns">' + btn("clear", "清除") + "</div>",
+        });
+      });
+    });
+    svg.querySelectorAll(".lg").forEach((l) => {
+      l.addEventListener("click", () => {
+        const k = l.dataset.kind;
+        l.classList.toggle("off");
+        const off = l.classList.contains("off");
+        nodes.forEach((n) => {
+          if (n.dataset.kind === k) n.classList.toggle("off", off);
+        });
+      });
+    });
+    const api = {
+      applyHash() {
+        const h = new URLSearchParams(location.hash.slice(1));
+        if (h.get("view")) {
+          const v = views.find((v) => v.id === h.get("view"));
+          v ? showView(v) : reset();
+        } else if (h.get("route")) {
+          const [a, b] = h.get("route").split("~");
+          byId[a] && byId[b] ? showRoute(a, b) : reset();
+        } else if (h.get("focus") && byId[h.get("focus")]) {
+          showFocus(h.get("focus"));
+          if (h.get("reach")) showReach(h.get("focus"), h.get("reach"));
+        }
+      },
+      reset,
+      clear,
+    };
+    return api;
+  }
+
+  const instances = [...document.querySelectorAll("[data-explore]")]
+    .map(setup)
+    .filter(Boolean);
+  if (!instances.length) return;
+  instances[0].applyHash();
+  window.addEventListener("hashchange", () => instances[0].applyHash());
+})();
+</script>
+<!-- vt-tweaks:begin v=1f6fc87025 -->
+<style id="vt-tweaks-css">
+/* 風格設定面板 — 與 tweaks.js 成對，由 scripts/stamp.py 在 verify 時注入頁尾（作者不用複製）。
+   字級與間距的倍率靠兩個變數：--fs（字級）、--dens（間距）。stamp.py 會把頁面裡寫死的
+   px 字級與間距改成 calc(原值 * var(--fs|--dens, 1))，這裡只負責「哪些區塊不吃倍率」。 */
+
+/* 不吃倍率：結構圖、畫面樣張（它們是示意畫面，照比例縮放才對）、頁面介面本身
+   （風格設定面板、評論工具、session 徽章；字放到 200% 時還得能把它調回來）、作者手動鎖定的區塊。
+   ⚠️ 要逐一列出，不能用「class 以 vt- 開頭」：評論工具會在 body 加 vt-has-existing-export，
+   前綴比對會把整頁鎖死；被評論標記的文字（vt-comment-mark）也該跟著內文縮放。 */
+svg,
+.mock,
+[data-tw-lock],
+.vt-tw-root,
+.vt-comment-trigger,
+.vt-comment-popup,
+.vt-comment-pill,
+.vt-comment-list,
+.vt-session-badge {
+  --fs: 1;
+  --dens: 1;
+}
+/* 沒宣告字級的頁面（spec-alignment 範本就是）：零權重，任何頁面規則都蓋得過它 */
+:where(body) {
+  font-size: calc(16px * var(--fs, 1));
+}
+/* Tailwind 文字 class 的覆寫由 stamp.py 視頁面需要產生（只在有 Tailwind、倍率≠1 時生效），不放這裡 */
+
+/* ── 面板本體（按鈕與面板都掛 vt-tw-root → 在上面的排除清單裡，不吃倍率）── */
+/* 沒有底部列可停的頁：浮在左下角（右下角是評論工具） */
+.vt-tw-launch {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 9100;
+  display: flex;
+  align-items: center;
+  gap: calc(5px * var(--dens, 1));
+  font: 600 calc(12px * var(--fs, 1)) var(--sans, system-ui, sans-serif);
+  padding: calc(5px * var(--dens, 1)) calc(10px * var(--dens, 1));
+  border-radius: 999px;
+  border: 1.5px solid var(--slate, #141413);
+  background: var(--slate, #141413);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(20, 20, 19, 0.2);
+}
+.vt-tw-launch svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+/* 停在底部列「預覽摘要」左邊：外觀跟旁邊的次要按鈕一致，各寬度都停（窄螢幕只顯示圖示，見檔尾） */
+.vt-tw-launch.vt-tw-docked {
+  position: static;
+  display: inline-flex; /* 父層是一般區塊時才不會獨佔一行、把列撐高 */
+  font: 500 calc(14px * var(--fs, 1)) var(--sans, system-ui, sans-serif);
+  padding: calc(10px * var(--dens, 1)) calc(16px * var(--dens, 1));
+  border-radius: 10px;
+  border: 1.5px solid var(--g300, #d1cfc5);
+  background: #fff;
+  color: var(--slate, #141413);
+  box-shadow: none;
+}
+.vt-tw-launch.vt-tw-docked:hover {
+  border-color: var(--slate, #141413);
+}
+/* 位置（bottom、left／right、max-height）由 tweaks.js 依按鈕位置算 */
+.vt-tw-pop {
+  position: fixed;
+  width: min(330px, 92vw);
+  overflow: auto;
+  z-index: 9100;
+  background: #fff;
+  color: var(--slate, #141413);
+  border: 1.5px solid var(--g300, #d1cfc5);
+  border-radius: 12px;
+  box-shadow: 0 16px 44px rgba(20, 20, 19, 0.22);
+  padding: calc(14px * var(--dens, 1)) calc(16px * var(--dens, 1)) calc(16px * var(--dens, 1));
+  font: calc(13px * var(--fs, 1))/1.5 var(--sans, system-ui, sans-serif);
+  text-align: left;
+}
+.vt-tw-pop[hidden] {
+  display: none;
+}
+.vt-tw-sec {
+  font: 600 calc(10.5px * var(--fs, 1)) var(--mono, ui-monospace, monospace);
+  color: var(--g500, #87867f);
+  letter-spacing: 0.06em;
+  margin: calc(12px * var(--dens, 1)) 0 calc(6px * var(--dens, 1));
+  padding-top: calc(10px * var(--dens, 1));
+  border-top: 1px solid var(--g200, #e6e3da);
+}
+.vt-tw-sec.vt-tw-first {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 中英切換：面板頂端那行的右邊 */
+.vt-tw-lang {
+  font: 600 calc(11px * var(--fs, 1)) var(--sans, system-ui, sans-serif);
+  letter-spacing: 0;
+  padding: calc(2px * var(--dens, 1)) calc(8px * var(--dens, 1));
+  border-radius: 6px;
+  border: 1.5px solid var(--g300, #d1cfc5);
+  background: #fff;
+  color: var(--g700, #3d3d3a);
+  cursor: pointer;
+}
+.vt-tw-lang:hover {
+  border-color: var(--slate, #141413);
+}
+.vt-tw-item {
+  margin: calc(8px * var(--dens, 1)) 0;
+}
+.vt-tw-label {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(8px * var(--dens, 1));
+  font-weight: 600;
+  margin-bottom: calc(4px * var(--dens, 1));
+}
+.vt-tw-val {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-weight: 500;
+  color: var(--clay-d, #b85c3e);
+}
+.vt-tw-item input[type="range"] {
+  width: 100%;
+  accent-color: var(--clay, #d97757);
+}
+.vt-tw-seg {
+  display: flex;
+  border: 1.5px solid var(--g300, #d1cfc5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.vt-tw-seg button {
+  flex: 1;
+  font: calc(12.5px * var(--fs, 1)) var(--sans, system-ui, sans-serif);
+  padding: calc(5px * var(--dens, 1)) calc(4px * var(--dens, 1));
+  border: 0;
+  border-right: 1px solid var(--g300, #d1cfc5);
+  background: #fff;
+  color: var(--g700, #3d3d3a);
+  cursor: pointer;
+}
+.vt-tw-seg button:last-child {
+  border-right: 0;
+}
+.vt-tw-seg button.vt-tw-on {
+  background: var(--slate, #141413);
+  color: #fff;
+}
+.vt-tw-hint {
+  font-size: calc(11.5px * var(--fs, 1));
+  color: var(--g500, #87867f);
+  line-height: 1.5;
+  margin-top: calc(5px * var(--dens, 1));
+}
+.vt-tw-actions {
+  display: flex;
+  gap: calc(8px * var(--dens, 1));
+  margin-top: calc(14px * var(--dens, 1));
+}
+.vt-tw-actions button {
+  flex: 1;
+  font: calc(12.5px * var(--fs, 1)) var(--sans, system-ui, sans-serif);
+  padding: calc(7px * var(--dens, 1)) calc(8px * var(--dens, 1));
+  border-radius: 8px;
+  border: 1.5px solid var(--g300, #d1cfc5);
+  background: #fff;
+  cursor: pointer;
+}
+.vt-tw-actions button.vt-tw-pri {
+  border-color: var(--clay, #d97757);
+  color: var(--clay-d, #b85c3e);
+  font-weight: 600;
+}
+.vt-tw-actions button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.vt-tw-manual {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: calc(8px * var(--dens, 1));
+  padding: calc(6px * var(--dens, 1)) calc(8px * var(--dens, 1));
+  font: calc(11px * var(--fs, 1))/1.5 var(--mono, ui-monospace, monospace);
+  border: 1.5px solid var(--g300, #d1cfc5);
+  border-radius: 8px;
+  resize: vertical;
+}
+.vt-tw-manual[hidden] {
+  display: none;
+}
+.vt-tw-actions button[aria-pressed="true"] {
+  background: var(--clay-d, #b85c3e);
+  border-color: var(--clay-d, #b85c3e);
+  color: #fff;
+}
+@media (max-width: 760px) {
+  .vt-tw-launch {
+    padding: calc(8px * var(--dens, 1));
+  }
+  .vt-tw-lbl {
+    display: none; /* 手機只留圖示，少蓋一點內容 */
+  }
+}
+/* 範本底部列在 900px 以下擠不下帶字的第三顆鈕：只留圖示、縮內距，高度跟旁邊的按鈕拉齊。
+   約 360px 以下、以及 700px 前後一小段寬度，列仍可能折成兩行（範圍依列上的文字與按鈕字數而定；等於更窄螢幕的版型），接受 */
+@media (max-width: 900px) {
+  .vt-tw-docked .vt-tw-lbl {
+    display: none;
+  }
+  .vt-tw-launch.vt-tw-docked {
+    padding: calc(10px * var(--dens, 1)) calc(11px * var(--dens, 1));
+    align-self: stretch;
+  }
+}
+
+</style>
+<script id="vt-tweaks-js" data-profile-tool="$HOME/.codex/skills/html-visualizer/scripts/profile.py">
+/* 風格設定面板 — 與 tweaks.css 成對，由 scripts/stamp.py 在 verify 時注入頁尾（作者不用複製）。
+ * 按鈕「風格設定」：頁面有範本底部列的「預覽摘要」（#preview-btn）就停在它左邊，各寬度都是（窄螢幕只顯示圖示）；
+ * 沒有底部列就固定在左下角（右下角是評論工具的位置）。面板從按鈕上方打開。
+ * 底部列一律用範本的，按鈕不偵測、不閃避頁面自己做的固定列。
+ * （本檔任何地方都不能出現 script 的結尾標籤字樣，否則內嵌時瀏覽器會在那裡把腳本切斷。）
+ *
+ * 固定層（每頁都有）：字級 90%–200%、密度、內容寬度，寫在 <html> 的 --fs／--dens／--wrap-max。
+ * 內容層（作者選配，預設 0 項）：頁面放一個 type 為 application/json、id 為 vt-tweaks 的 script 區塊，
+ *   內容是 [{id,label,options:[[值,顯示],...],hint}]。
+ * 選了之後在 <html> 設 data-tw-<id>="值"，作者只寫對應的 CSS，不寫 JS。hint 必填（這項會改到頁面上的什麼）。
+ * 調過的值只改畫面、不進複製摘要。讀者按「存成我的預設」才產生「設定檔變更」段落（給 AI 執行的一行
+ * profile.py 指令，使用者不用自己跑）：有拍板摘要的頁經 window.vtCollectComments 接進摘要，沒有的頁直接複製。
+ * 介面有中英兩種，面板頂端可切換（「設定檔變更」段落也跟著換語言）。
+ */
+(function () {
+  var root = document.documentElement;
+  var me = document.currentScript;
+  var tool = (me && me.getAttribute("data-profile-tool")) || "profile.py";
+  // 介面語言：讀者切換過就記在瀏覽器、之後的頁沿用；沒切過跟頁面的 lang 走。
+  // 沙盒 iframe（沒開 allow-same-origin）一碰 localStorage 就丟錯，所以包 try
+  var lang = null;
+  try {
+    lang = localStorage.getItem("vt-tw-lang");
+  } catch (e) {}
+  if (lang !== "zh" && lang !== "en") lang = /^en/i.test(root.lang) ? "en" : "zh";
+  var LANG = {
+    zh: {
+      name: "風格設定",
+      short: "風格設定",
+      title: "風格設定（字級、密度、寬度）",
+      fixed: "固定層 · 每頁都有",
+      content: "內容層 · 這頁專屬",
+      swap: "EN",
+      reset: "全部還原",
+      save: "存成我的預設",
+      added: "已加進複製摘要",
+      copied: "已複製，貼回對話即可",
+      select: "已選取，請按 Cmd+C",
+      need: function (n) {
+        return "調過" + n.slice(0, -1).join("、") + "或" + n[n.length - 1] + "，才能存成你的預設。";
+      },
+      undo: "存檔指令已加進這頁的複製摘要，複製後貼回對話即可；再按一次取消。",
+      toSummary: "按下後，存檔指令會加進這頁的複製摘要；貼回對話，AI 會寫進你的設定檔，之後的頁都用這組。",
+      toCopy: "按下後會複製一段指令；貼回對話，AI 會寫進你的設定檔，之後的頁都用這組。",
+      head: "## 設定檔變更\n給 AI：使用者要把這頁的顯示設定存成預設（",
+      pair: "：",
+      join: "、",
+      tail: "）。請執行下面這行寫入 html-visualizer 設定檔，完成後回報前後差異；使用者不用自己跑。\n",
+    },
+    en: {
+      name: "Style settings",
+      short: "Style",
+      title: "Style settings (text size, density, width)",
+      fixed: "Every page",
+      content: "This page only",
+      swap: "中文",
+      reset: "Reset all",
+      save: "Save as my default",
+      added: "Added to summary",
+      copied: "Copied",
+      select: "Press Cmd+C",
+      need: function (n) {
+        n = n.map(function (x) {
+          return x.toLowerCase();
+        });
+        return "Change the " + n.slice(0, -1).join(", ") + " or " + n[n.length - 1] + " to save it as your default.";
+      },
+      undo: "The save command is in this page's copy summary. Copy the summary and paste it into the chat. Click again to remove it.",
+      toSummary: "Adds a save command to this page's copy summary. Paste it into the chat and the AI writes it to your profile; later pages use these settings.",
+      toCopy: "Copies a save command. Paste it into the chat and the AI writes it to your profile; later pages use these settings.",
+      head: "## Profile changes\nFor the AI: the user wants to save this page's display settings as their default (",
+      pair: ": ",
+      join: ", ",
+      tail: "). Run the line below to write them to the html-visualizer profile, then report the before and after values. The user doesn't need to run it.\n",
+    },
+  };
+  var L = LANG[lang];
+  // 固定層的名稱與選項是 {zh, en}；作者寫的內容層（字串或數字）原樣顯示
+  function txt(x) {
+    return x && typeof x === "object" ? x[lang] : x;
+  }
+  var cs = getComputedStyle(root);
+  function cssNum(name, fallback) {
+    var v = parseFloat(cs.getPropertyValue(name));
+    return isNaN(v) ? fallback : v;
+  }
+  var baseFs = cssNum("--fs", 1);
+  var DENS = [
+    ["0.75", { zh: "緊湊", en: "Compact" }, "compact"],
+    ["1", { zh: "標準", en: "Standard" }, "standard"],
+    ["1.3", { zh: "寬鬆", en: "Relaxed" }, "relaxed"],
+  ];
+  var baseDens = String(cssNum("--dens", 1));
+  if (!DENS.some(function (d) { return d[0] === baseDens; })) baseDens = "1";
+  // 內容寬度只在頁面有用 --wrap-max 時提供（範本在 :root 宣告它）；沒宣告的頁按了也不會動，乾脆不顯示
+  var rawWrap = cs.getPropertyValue("--wrap-max").trim();
+  var baseWrap = parseFloat(rawWrap) || 1760;
+  var wrapOpts = [
+    ["1760px", { zh: "滿版", en: "Full" }, "1760"],
+    ["1080px", { zh: "閱讀寬", en: "Reading" }, "1080"],
+  ];
+  if (baseWrap !== 1760 && baseWrap !== 1080) wrapOpts.unshift([baseWrap + "px", { zh: "預設", en: "Default" }, String(baseWrap)]);
+  var FIXED = [
+    { id: "fs", label: { zh: "字級", en: "Text size" }, kind: "range", min: 0.9, max: 2, step: 0.05, def: String(baseFs), css: "--fs", profile: "tokens.type.scale" },
+    { id: "dens", label: { zh: "密度", en: "Density" }, css: "--dens", def: baseDens, profile: "tokens.layout.density", options: DENS },
+  ];
+  if (rawWrap) {
+    FIXED.push({ id: "width", label: { zh: "內容寬度", en: "Width" }, css: "--wrap-max", def: baseWrap + "px", profile: "tokens.layout.maxWidth", options: wrapOpts });
+  }
+  // html.vt-fs：倍率≠1 時才讓 Tailwind 文字 class 的覆寫生效（stamp.py 產生的規則都掛在它底下）
+  root.classList.toggle("vt-fs", baseFs !== 1);
+  var content = [];
+  // 用 querySelector：沒有內容層的頁面本來就沒有這個元素，不該被 verify 的元素參照檢查報成缺漏
+  var decl = document.querySelector("script#vt-tweaks");
+  if (decl) {
+    try {
+      content = JSON.parse(decl.textContent);
+    } catch (e) {
+      console.error("vt-tweaks 宣告不是合法 JSON", e);
+    }
+  }
+  content = content.filter(function (c) {
+    var ok =
+      c && c.id && c.label && Array.isArray(c.options) && c.options.length >= 2;
+    if (!ok) console.error("vt-tweaks 項目缺 id／label／options", c);
+    else if (!c.hint)
+      console.error(
+        "vt-tweaks 項目缺 hint（要寫這項會改到頁面上的什麼）",
+        c.id,
+      );
+    return ok;
+  });
+  if (content.length > 3) {
+    console.error("vt-tweaks 最多 3 項，多的不顯示");
+    content = content.slice(0, 3);
+  }
+  content.forEach(function (c) {
+    c.attr = "data-tw-" + c.id;
+    c.def = String(c.options[0][0]);
+  });
+  var ALL = FIXED.concat(content);
+  var saved = false; // 按過「存成我的預設」（只在有拍板摘要的頁用得到）
+  var state = {};
+  ALL.forEach(function (t) {
+    state[t.id] = t.def;
+  });
+
+  function label(t, v) {
+    if (t.kind === "range") return Math.round(parseFloat(v) * 100) + "%";
+    for (var i = 0; i < t.options.length; i++)
+      if (String(t.options[i][0]) === v) return txt(t.options[i][1]);
+    return v;
+  }
+  function apply(t) {
+    if (t.css) root.style.setProperty(t.css, state[t.id]);
+    if (t.attr) root.setAttribute(t.attr, state[t.id]);
+    if (t.id === "fs") root.classList.toggle("vt-fs", parseFloat(state.fs) !== 1);
+  }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  // 切換語言時要重寫的文字：登記時先畫一次，切換時全部重跑
+  var paint = [];
+  function painted(fn) {
+    paint.push(fn);
+    fn();
+  }
+
+  var launch = el("button", "vt-tw-launch vt-tw-root");
+  launch.type = "button";
+  launch.setAttribute("aria-expanded", "false");
+  launch.innerHTML =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="21" y1="4" x2="14" y2="4"/><line x1="10" y1="4" x2="3" y2="4"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="8" y1="12" x2="3" y2="12"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="12" y1="20" x2="3" y2="20"/><line x1="14" y1="2" x2="14" y2="6"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="16" y1="18" x2="16" y2="22"/></svg>';
+  var lbl = launch.appendChild(el("span", "vt-tw-lbl"));
+  var pop = el("aside", "vt-tw-pop vt-tw-root");
+  pop.hidden = true;
+  painted(function () {
+    launch.setAttribute("aria-label", L.name);
+    launch.title = L.title;
+    lbl.textContent = L.short;
+    pop.setAttribute("aria-label", L.name);
+  });
+
+  function control(t) {
+    var wrap = el("div", "vt-tw-item");
+    var lab = el("div", "vt-tw-label");
+    var name = lab.appendChild(el("span"));
+    var val = el("span", "vt-tw-val");
+    lab.appendChild(val);
+    wrap.appendChild(lab);
+    function sync() {
+      val.textContent = label(t, state[t.id]);
+    }
+    if (t.kind === "range") {
+      var r = el("input");
+      r.type = "range";
+      r.min = t.min;
+      r.max = t.max;
+      r.step = t.step;
+      r.value = state[t.id];
+      r.addEventListener("input", function () {
+        state[t.id] = r.value;
+        apply(t);
+        sync();
+        refreshSave();
+      });
+      wrap.appendChild(r);
+      t.reset = function () {
+        r.value = t.def;
+      };
+    } else {
+      var seg = el("div", "vt-tw-seg");
+      t.options.forEach(function (o) {
+        var b = el("button");
+        b.type = "button";
+        painted(function () {
+          b.textContent = txt(o[1]);
+        });
+        b.setAttribute("data-v", String(o[0]));
+        b.addEventListener("click", function () {
+          state[t.id] = String(o[0]);
+          apply(t);
+          mark();
+          sync();
+          refreshSave();
+        });
+        seg.appendChild(b);
+      });
+      function mark() {
+        seg.querySelectorAll("button").forEach(function (b) {
+          b.classList.toggle(
+            "vt-tw-on",
+            b.getAttribute("data-v") === state[t.id],
+          );
+        });
+      }
+      mark();
+      t.reset = mark;
+      wrap.appendChild(seg);
+    }
+    if (t.hint) wrap.appendChild(el("div", "vt-tw-hint", t.hint));
+    t.sync = sync;
+    painted(function () {
+      name.textContent = txt(t.label);
+      if (r) r.setAttribute("aria-label", txt(t.label));
+      sync();
+    });
+    return wrap;
+  }
+  var first = pop.appendChild(el("div", "vt-tw-sec vt-tw-first"));
+  var firstText = first.appendChild(el("span"));
+  var langBtn = first.appendChild(el("button", "vt-tw-lang"));
+  langBtn.type = "button";
+  painted(function () {
+    firstText.textContent = L.fixed;
+    langBtn.textContent = L.swap;
+  });
+  FIXED.forEach(function (t) {
+    pop.appendChild(control(t));
+  });
+  if (content.length) {
+    var sec = pop.appendChild(el("div", "vt-tw-sec"));
+    painted(function () {
+      sec.textContent = L.content;
+    });
+    content.forEach(function (t) {
+      pop.appendChild(control(t));
+    });
+  }
+  var actions = el("div", "vt-tw-actions");
+  var resetBtn = el("button");
+  resetBtn.type = "button";
+  painted(function () {
+    resetBtn.textContent = L.reset;
+  });
+  var saveBtn = el("button", "vt-tw-pri");
+  saveBtn.type = "button";
+  actions.appendChild(resetBtn);
+  actions.appendChild(saveBtn);
+  pop.appendChild(actions);
+  var saveHint = el("div", "vt-tw-hint");
+  pop.appendChild(saveHint);
+  // 複製不到時的出路：指令放進這裡並全選，使用者按 Cmd+C（純展示頁沒有頁面自帶的複製函式）
+  var manual = el("textarea", "vt-tw-manual");
+  manual.readOnly = true;
+  manual.rows = 4;
+  manual.hidden = true;
+  pop.appendChild(manual);
+  var flashTimer = null;
+
+  function changedFixed() {
+    return FIXED.filter(function (t) {
+      return state[t.id] !== t.def;
+    });
+  }
+  function profileValue(t, v) {
+    if (t.options) {
+      for (var i = 0; i < t.options.length; i++)
+        if (String(t.options[i][0]) === v) return t.options[i][2];
+    }
+    return String(Math.round(parseFloat(v) * 100) / 100);
+  }
+  function hasSummary() {
+    return typeof window.vtBuildDecisionExport === "function";
+  }
+  function saveText(ch) {
+    return (
+      L.head +
+      ch
+        .map(function (t) {
+          return txt(t.label) + L.pair + label(t, state[t.id]);
+        })
+        .join(L.join) +
+      L.tail +
+      // 雙引號：路徑以 $HOME 開頭，單引號裡不會展開
+      'python3 "' +
+      tool +
+      '" set ' +
+      ch
+        .map(function (t) {
+          return t.profile + "=" + profileValue(t, state[t.id]);
+        })
+        .join(" ")
+    );
+  }
+  function refreshSave() {
+    var n = changedFixed().length;
+    // 只看目前的值：拖滑桿途中經過預設值那一格不該把已存取消
+    var on = saved && n > 0;
+    // 失敗時留下的文字框：設定一變，裡面的指令就過時了
+    if (!manual.hidden && manual.value !== saveText(changedFixed())) manual.hidden = true;
+    saveBtn.disabled = !n;
+    if (hasSummary()) saveBtn.setAttribute("aria-pressed", String(on));
+    saveBtn.textContent = on ? L.added : L.save;
+    saveHint.textContent = !n
+      ? L.need(FIXED.map(function (t) {
+          return txt(t.label);
+        }))
+      : on
+        ? L.undo
+        : hasSummary()
+        ? L.toSummary
+        : L.toCopy;
+  }
+  window.vtCollectTweaks = function () {
+    var ch = changedFixed();
+    return saved && ch.length ? "\n\n" + saveText(ch) : "";
+  };
+  resetBtn.addEventListener("click", function () {
+    saved = false;
+    ALL.forEach(function (t) {
+      state[t.id] = t.def;
+      apply(t);
+      t.reset();
+      t.sync();
+    });
+    refreshSave();
+  });
+  saveBtn.addEventListener("click", async function () {
+    if (hasSummary()) {
+      saved = !saved;
+      refreshSave();
+      return;
+    }
+    // 沒有拍板摘要的頁：按鈕本身就是出口，直接複製
+    var text = saveText(changedFixed());
+    var ok = false;
+    manual.hidden = true;
+    if (window.vtCopyText) ok = await window.vtCopyText(text);
+    // 沒有頁面的複製函式就直接走下面：在點擊當下同步複製，不先 await 別的 API 把使用者手勢耗掉
+    if (!ok) {
+      manual.value = text;
+      manual.hidden = false;
+      manual.select();
+      try {
+        ok = document.execCommand("copy");
+      } catch (e) {}
+      if (ok) manual.hidden = true;
+    }
+    saveBtn.textContent = ok ? L.copied : L.select;
+    clearTimeout(flashTimer); // 連點時舊計時器不能提早蓋掉新回饋
+    flashTimer = setTimeout(refreshSave, ok ? 2000 : 6000);
+  });
+  // 面板開在按鈕上方：按鈕在右半就右緣對齊、左半就左緣對齊；
+  // 按鈕上方不到 200px（視窗矮、底部列展開）就改貼畫面頂端，不讓面板頂端跑出畫面
+  function place() {
+    var r = launch.getBoundingClientRect();
+    var w = Math.min(330, window.innerWidth * 0.92);
+    var x = r.left + r.width / 2 > window.innerWidth / 2 ? r.right - w : r.left;
+    // 預覽鈕在列中間時（非範本的列）對齊邊緣會出界，夾回畫面內
+    pop.style.left = Math.max(8, Math.min(x, window.innerWidth - w - 8)) + "px";
+    var low = r.top - 24 < 200;
+    pop.style.top = low ? "12px" : "auto";
+    pop.style.bottom = low ? "auto" : window.innerHeight - r.top + 10 + "px";
+    pop.style.maxHeight = (low ? window.innerHeight - 24 : r.top - 24) + "px";
+  }
+  langBtn.addEventListener("click", function () {
+    lang = lang === "zh" ? "en" : "zh";
+    L = LANG[lang];
+    try {
+      localStorage.setItem("vt-tw-lang", lang);
+    } catch (e) {}
+    paint.forEach(function (f) {
+      f();
+    });
+    refreshSave();
+  });
+  function setOpen(open) {
+    if (open) place();
+    pop.hidden = !open;
+    launch.setAttribute("aria-expanded", String(open));
+  }
+  launch.addEventListener("click", function () {
+    setOpen(pop.hidden);
+  });
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && !pop.hidden) setOpen(false);
+  });
+  document.addEventListener("click", function (ev) {
+    // 用事件當下的路徑判斷（按鈕若在點擊後被重畫移除，closest 會找不到而誤關）
+    var inside = ev.composedPath().some(function (el) {
+      return el.classList && el.classList.contains("vt-tw-root");
+    });
+    if (!pop.hidden && !inside) setOpen(false);
+  });
+  // 把「設定檔變更」段接進評論收集函式：所有複製摘要都已經照規定拼接它，不必逐一改寫
+  function hook() {
+    var orig = window.vtCollectComments;
+    window.vtCollectComments = function () {
+      return window.vtCollectTweaks() + (orig ? orig() : "");
+    };
+  }
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", hook);
+  else hook();
+  // querySelector：頁面沒有預覽鈕是正常的，不該讓 verify 的元素參照檢查報缺漏（同上方 vt-tweaks 的寫法）
+  var dock = document.querySelector("#preview-btn");
+  document.body.appendChild(pop);
+  if (dock) {
+    launch.classList.add("vt-tw-docked");
+    dock.parentNode.insertBefore(launch, dock);
+  } else document.body.insertBefore(launch, pop); // Tab 順序：按鈕→面板
+  // 縮放、捲動時按鈕會跟著列移動（捲到頁尾，列會被頁尾往上推），開著的面板要跟著對齊
+  function follow() {
+    if (!pop.hidden) place();
+  }
+  window.addEventListener("resize", follow);
+  window.addEventListener("scroll", follow, { passive: true });
+  refreshSave();
+})();
+
+</script>
+<!-- vt-tweaks:end -->
