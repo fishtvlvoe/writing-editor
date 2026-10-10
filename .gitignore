@@ -3,3 +3,6 @@
 .obsidian/
 discuss/
 .grok/
+
+# Spectra app data
+.spectra/
