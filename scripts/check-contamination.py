@@ -103,9 +103,8 @@ def check_file(target_path: Path, repo_root: Path) -> int:
             if hist_file.resolve() == target_path.resolve():
                 continue
             # 檢查是否為同一篇的命名關聯
-            if "虧損二百零九億" in target_path.name and "虧損二百零九億" in hist_file.name:
-                continue
-            if "writing-trump-si" in str(target_path) and "虧損二百零九億" in hist_file.name:
+            same_trump_si = ("writing-trump-si" in str(target_path) or "換個名字" in target_path.name or "改名叫SI" in target_path.name) and ("換個名字" in hist_file.name or "改名叫SI" in hist_file.name or "虧損二百零九億" in hist_file.name)
+            if same_trump_si:
                 continue
 
             hist_content = hist_file.read_text(encoding="utf-8")
